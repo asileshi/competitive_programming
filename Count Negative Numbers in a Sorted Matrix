@@ -1,0 +1,23 @@
+from heapq import*
+class Solution:
+    def countNegatives(self, grid: List[List[int]]) -> int:
+        total_matrix = []
+        for i in range(len(grid)):
+            total_matrix+=grid[i]
+        total_matrix.sort()
+        left = 0
+        right = len(total_matrix)-1
+        right_best = 0
+        k=0
+        while left<=right:
+            mid = left+(right-left)//2
+            if total_matrix[mid]<0:
+                k+=1
+                right_best = mid
+                left = mid+1
+            elif total_matrix[mid]>=0:
+                right = mid-1
+        if k == 0:
+            return 0
+        else:
+            return right_best+1
