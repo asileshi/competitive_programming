@@ -1,0 +1,11 @@
+from heapq import*
+class Solution:
+    def kthSmallest(self, matrix: List[List[int]], k: int) -> int:
+        merged_matrix = []
+        for i in range(len(matrix)):
+            merged_matrix+=matrix[i]
+        heapify(merged_matrix)
+        for j in range(k-1):
+            heappop(merged_matrix)
+        return merged_matrix[0]
+        
