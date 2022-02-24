@@ -1,0 +1,18 @@
+from heapq import*
+class Solution:
+    def lastStoneWeight(self, stones: List[int]) -> int:
+        maxheap = []
+        for i in stones:
+            maxheap.append(-i)
+        
+        heapify(maxheap)
+        while len(maxheap)>1:
+            max1 = heappop(maxheap)
+            max2 = heappop(maxheap)
+            if max1 != max2:
+                heappush(maxheap,max1-max2)
+        if len(maxheap)==1:
+            return -maxheap[0]
+        else:
+            return 0
+                
