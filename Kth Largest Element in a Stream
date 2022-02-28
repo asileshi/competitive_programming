@@ -1,0 +1,16 @@
+from heapq import*
+class KthLargest:
+
+    def __init__(self, k: int, nums: List[int]):
+        self.k = k
+        heapify(nums)
+        new_num = nlargest(self.k,nums)      
+        heapify(new_num)
+        self.heaped =new_num
+        
+    def add(self, val):
+        if len(self.heaped) < self.k:
+            heappush(self.heaped,val)
+        else:
+            heappushpop(self.heaped,val)
+        return self.heaped[0]
