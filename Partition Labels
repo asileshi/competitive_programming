@@ -1,0 +1,21 @@
+class Solution:
+    def partitionLabels(self, s: str) -> List[int]:
+        def last(idx,s):
+            j=len(s)-1
+            while s[idx]!=s[j]:
+                j-=1
+            return j
+        ans=[]
+        i=0
+        while i<len(s):
+            f=last(i,s)
+            j=i+1
+            while j<f:
+                print(f,j)
+                if s[j] in set(list(s[f+1:])):
+                    f=last(j,s)
+                j+=1
+            ans.append(f-i+1)
+            i=f+1
+                
+        return ans
