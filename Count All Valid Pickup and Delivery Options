@@ -1,0 +1,6 @@
+import math
+class Solution:
+    def countOrders(self, n: int) -> int:
+        rmd=10**9+7
+        ans =math.factorial(2*n)//2**n
+        return ans%rmd
