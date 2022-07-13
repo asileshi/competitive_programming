@@ -1,0 +1,19 @@
+class Solution:
+    def swapNodes(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        l= 0
+        cur = head
+        cur1 = head
+        ans = head
+        while cur:
+            l+=1
+            cur = cur.next
+        from_back = l-k
+        first=second = 0
+        for i in range(l):
+            if i+1 == k:
+                first = cur1
+            if i == from_back:
+                second = cur1
+            cur1 = cur1.next
+        first.val,second.val = second.val,first.val
+        return ans
