@@ -1,0 +1,43 @@
+class Solution:
+    def countUnguarded(self, m: int, n: int, guards: List[List[int]], walls: List[List[int]]) -> int:
+        temp = set()
+        visited = set()
+        for wall in walls:
+            temp.add((wall[0],wall[1]))
+    
+        for guard in guards:
+            temp.add((guard[0],guard[1]))
+        for guard in guards:
+            r = guard[1]+1
+            if r<n and (guard[0],r) not in temp:
+                while r<n:
+                    if (guard[0],r) in temp:
+                        break
+                    if (guard[0],r) not in visited:
+                        visited.add((guard[0],r))
+                    r+=1
+            l = guard[1]-1
+            if l>=0 and (guard[0],l) not in temp:
+                while l>=0:
+                    if (guard[0],l) in temp:
+                        break
+                    if (guard[0],l) not in visited:
+                        visited.add((guard[0],l))
+                    l-=1
+            u = guard[0]-1
+            if u>=0 and (u,guard[1]) not in temp:
+                while u>=0:
+                    if (u,guard[1] ) in temp:
+                        break
+                    if (u,guard[1]) not in visited:
+                        visited.add((u,guard[1]))
+                    u-=1
+            d = guard[0]+1
+            if d<m and (d,guard[1]) not in temp:
+                while d<m:
+                    if (d,guard[1]) in temp :
+                        break
+                    if (d,guard[1]) not in visited:
+                        visited.add((d,guard[1]))
+                    d+=1
+        return m*n-len(visited)-len(walls)-len(guards)
