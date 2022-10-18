@@ -1,0 +1,12 @@
+class Solution:
+    def sumOfNumberAndReverse(self, num: int) -> bool:
+        if num == 0:
+            return True
+        start = num//2
+        for i in range(start,num):
+            string_number = str(i)
+            reverse = string_number[::-1]
+            if int(string_number)+int(reverse)==num:
+                return True
+        return False
+            
