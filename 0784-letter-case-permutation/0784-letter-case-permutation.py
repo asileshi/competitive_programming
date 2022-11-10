@@ -3,20 +3,19 @@ class Solution:
         answer = []
         def backtrack(i, current):
             if i == len(s):
-                temp = ''.join(current.copy())
-                answer.append(temp)
+                answer.append(''.join(current.copy()))
                 return
-            if s[i].isdigit():
+            if not s[i].isdigit():
                 current.append(s[i])
                 backtrack(i+1,current)
-                
-            else:
-                current.append(s[i].lower())
+                current.pop()
+                current.append(s[i].swapcase())
                 backtrack(i+1,current)
                 current.pop()
-                current.append(s[i].upper())
-                backtrack(i+1,current)
-            current.pop()
-                
+            else:
+                current.append(s[i])
+                backtrack(i+1, current)
+                current.pop()
         backtrack(0,[])
         return answer
+            
