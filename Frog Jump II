@@ -1,0 +1,10 @@
+class Solution:
+    def maxJump(self, stones: List[int]) -> int:
+        ans = 0 
+        for i in range(len(stones)):
+            if i+2<len(stones):
+                ans = max(ans,stones[i+2]-stones[i])
+            if i+1<len(stones):
+                ans = max(ans,stones[i+1]-stones[i])
+        return ans
+        
