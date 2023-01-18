@@ -1,0 +1,31 @@
+
+class Solution:
+    def robotWithString(self, s: str) -> str:
+        alphabet = [0]*26
+        for l in s:
+            alphabet[ord(l)-97]+=1
+        stack,ans,l = [],[],0
+        while l<len(s):
+            if not stack:
+                stack.append(s[l])
+                alphabet[ord(s[l])-97]-=1
+                l+=1
+            else:
+                exist = False
+                for i in range(ord(stack[-1])-97):
+                    if alphabet[i]>0:
+                        exist = True
+                        break
+                if exist:
+                    stack.append(s[l])
+                    alphabet[ord(s[l])-97]-=1
+                    l+=1
+                else:
+                    top = stack.pop()
+                    ans.append(top)
+                    
+        while stack:
+            ans.append(stack.pop())
+        return ''.join(ans)
+
+        
