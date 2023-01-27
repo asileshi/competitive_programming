@@ -1,0 +1,10 @@
+class Solution:
+    def sortTheStudents(self, score: List[List[int]], k: int) -> List[List[int]]:
+        temp = []
+        ans = []
+        for i in range(len(score)):
+            temp.append([score[i][k],score[i]])
+        temp.sort(reverse=True)
+        for i in temp:
+            ans.append(i[1])
+        return ans
