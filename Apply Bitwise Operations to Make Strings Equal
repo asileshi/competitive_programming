@@ -1,0 +1,25 @@
+class Solution:
+    def makeStringsEqual(self, s: str, target: str) -> bool:
+        one,zero = 0,0
+        pluse,m = 0,0
+        for i in s:
+            if i == '0':
+                zero+=1
+            else:
+                one+=1
+        for i in range(len(s)):
+            if s[i]!=target[i]:
+                if s[i] == '0':
+                    pluse+=1
+                else:
+                    m+=1
+        if m == 0 and pluse == 0:
+            return True
+        if m>0 and pluse>0:
+            return True
+        if m>0:
+            return one>m
+        else:
+            return one>0
+            
+      
