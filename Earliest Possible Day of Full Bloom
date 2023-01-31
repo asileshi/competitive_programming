@@ -1,0 +1,10 @@
+class Solution:
+    def earliestFullBloom(self, plantTime: List[int], growTime: List[int]) -> int:
+        comb = [[growTime[i],plantTime[i]] for i in range(len(growTime))]
+        comb.sort(reverse=True)
+        ans = 0
+        plant,grow = 0,0
+        for c in comb:
+            plant+=c[1]
+            grow = max(grow,plant+c[0])
+        return grow
