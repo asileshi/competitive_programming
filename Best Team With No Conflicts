@@ -1,0 +1,17 @@
+class Solution:
+    def bestTeamScore(self, scores: List[int], ages: List[int]) -> int:
+        comb = [[ages[i],scores[i]] for i in range(len(scores))]
+        comb.sort()
+        dp = [val[1] for val in comb]
+        ans = 0
+        for i in range(len(dp)):
+            j = i-1
+            temp = 0
+            while j>=0:
+                if comb[i][1]>=comb[j][1]:
+                    temp = max(temp,dp[j])
+                j-=1
+            dp[i]+=temp
+            ans = max(ans,dp[i])
+        return ans
+
