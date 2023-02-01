@@ -1,0 +1,17 @@
+class Solution:
+    def reorderLogFiles(self, logs: List[str]) -> List[str]:
+        letter_log,digit_log = [],[]
+        for log in logs:
+            temp = log.split()
+            if temp[1].isdigit():
+                digit_log.append(temp)
+            else:
+                letter_log.append([temp[1:],temp[0]]) 
+        letter_log.sort()
+        ans = []
+        for log in letter_log:
+            ans.append(' '.join([log[1]]+log[0]))
+        for log in digit_log:
+            ans.append(' '.join(log))
+        return ans
+        
