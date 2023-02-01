@@ -1,0 +1,18 @@
+class Solution:
+    def numberOfWays(self, s: str) -> int:
+        one,ans = 0,0
+        for l in s:
+            if l == '1':
+                one+=1
+        zero = len(s)-one
+        before_one,before_zero = 0,0
+        for l in s:
+            if l == '0':
+                after_one = one-before_one
+                ans+=(before_one*after_one)
+                before_zero+=1
+            else:
+                after_zero = zero-before_zero
+                ans+=(before_zero*after_zero)
+                before_one+=1
+        return ans
