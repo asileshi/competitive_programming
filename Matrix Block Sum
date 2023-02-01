@@ -1,0 +1,14 @@
+class Solution:
+    def matrixBlockSum(self, mat: List[List[int]], k: int) -> List[List[int]]:
+        ans = []
+        for i in range(len(mat)):
+            temp = []
+            for j in range(len(mat[i])):
+                v,x,y,z = max(0,i-k),min(len(mat),i+k+1),max(0,j-k),min(len(mat[0]),j+k+1)
+                summ = 0
+                for c in range(v,x):
+                    summ+=sum(mat[c][y:z])
+                temp.append(summ)
+            ans.append(temp)
+        return ans
+
