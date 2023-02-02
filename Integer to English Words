@@ -1,0 +1,30 @@
+class Solution:
+    def numberToWords(self, num: int) -> str:
+        if num == 0: return 'Zero'
+        map = {"0":"","1":"One ", "2":"Two ","3":"Three ", "4":"Four ", "5":"Five ","6":"Six ","7":"Seven ","8":"Eight ", "9":"Nine ", "10":"Ten ", "11":"Eleven ", "12":"Twelve ","13":"Thirteen ","14":"Fourteen ","15":"Fifteen ","16":"Sixteen ", "17":"Seventeen ", "18":"Eighteen ","19":"Nineteen ","20":"Twenty ", "30":"Thirty ", "40":"Forty ", "50":"Fifty ", "60":"Sixty ", "70":"Seventy ", "80":"Eighty ", "90":"Ninety "}
+        def name(num):
+            if num in map:
+                return map[num]
+            elif len(num) == 2 and num[0] != '0':
+                return map[num[0]+'0'] + map[num[1]]
+            elif len(num) == 2:
+                return map[num[1]]
+            elif len(num) == 3 and num[0] != '0':
+                return map[num[0]] +'Hundred ' +  name(num[1:])
+            elif len(num) == 3:
+                return name(num[1:])
+        three_d = []
+        str_num = str(num)
+        left = len(str_num) % 3
+        if left:
+            three_d.append(str_num[:left])
+        for i in range(left, len(str_num)-2, 3):
+            three_d.append(str_num[i:i+3])
+        middle = {3:'Billion ', 2:'Million ', 1:'Thousand '}
+        ans = ''
+        for idx, num in enumerate(three_d):
+            ans += (name(num))
+            if not int(num): continue
+            if idx < len(three_d) - 1:
+                ans += (middle[len(three_d) - idx - 1])
+        return ans.rstrip()
