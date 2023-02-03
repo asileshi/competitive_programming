@@ -1,0 +1,21 @@
+class Solution:
+
+    def __init__(self, w: List[int]):
+        self.weight = []
+        summ = 0
+        for num in w:
+            summ+=num
+            self.weight.append(summ)
+        self.summ = summ
+    def pickIndex(self) -> int:
+        r = random.randint(1,self.summ)
+        for i in range(len(self.weight)):
+            if r<=self.weight[i]:
+                return i
+
+        
+
+
+# Your Solution object will be instantiated and called as such:
+# obj = Solution(w)
+# param_1 = obj.pickIndex()
