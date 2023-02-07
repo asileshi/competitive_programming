@@ -1,0 +1,17 @@
+class Solution:
+    def thirdMax(self, nums: List[int]) -> int:
+        first  = max(nums)
+        temp = -inf
+        for i in nums:
+            if i>temp and i!=first:
+                temp = i
+        ans = - inf
+        for i in nums:
+            if i>ans and i!=temp and i!= first:
+                ans = i
+        if ans != -inf:
+            return ans 
+        return max(nums)
+      
+            
+        
