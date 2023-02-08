@@ -1,0 +1,23 @@
+class Solution:
+    def calcEquation(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:
+        graph = defaultdict(list)
+        for (num, denom), quotient in zip(equations, values):
+            graph[num].append((denom, quotient))
+            graph[denom].append((num, 1 / quotient))
+        ans = []
+        for q in queries:
+            if not all (v in graph for v in q):
+                ans.append(-1.0)
+                continue
+            v, answer = q[0], None
+            visited, stack = set(), [(q[0], 1.0)]
+            while stack:
+                v, answer = stack.pop()
+                if v in visited:
+                    continue
+                visited.add(v)
+                if v == q[1]:
+                    break
+                stack += [(variable, quotient * answer) for variable, quotient in graph[v]]
+            ans.append(answer if v == q[1] else -1.0)
+        return ans
