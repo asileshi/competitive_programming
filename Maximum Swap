@@ -1,0 +1,22 @@
+class Solution:
+    def maximumSwap(self, num: int) -> int:
+        s = list(str(num))
+        temp2 = []
+        for i in s:
+            temp2.append(int(i))
+        temp2.sort(reverse = True)
+        for i in range(len(temp2)):
+            if int(s[i])!=temp2[i]:
+                break
+                
+        idx = i
+        temp = int(s[i])
+        for k in range(i,len(s)):
+            if int(s[k])>=temp:
+                temp = int(s[k])
+                idx = k
+        second = s[idx]
+        s[idx] = s[i]
+        s[i] = second
+        return int("".join(s))
+        
