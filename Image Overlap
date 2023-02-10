@@ -1,0 +1,20 @@
+class Solution:
+    def largestOverlap(self, img1: List[List[int]], img2: List[List[int]]) -> int:
+        temp1,temp2 = [],[]
+        for i in range(len(img1)):
+            for j in range(len(img1[0])):
+                if img1[i][j] == 1:
+                    temp1.append((i, j))
+        
+        for i in range(len(img2)):
+            for j in range(len(img2[0])):
+                if img2[i][j] == 1:
+                    temp2.append((i, j))
+        
+        diction = defaultdict(int)
+        for tuple1 in temp1:
+            for tuple2 in temp2:
+                diction[(tuple1[0] - tuple2[0], tuple1[1] - tuple2[1])] += 1
+        return max(diction.values()) if len(diction.values()) else 0
+        
+    
