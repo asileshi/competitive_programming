@@ -1,0 +1,9 @@
+class Solution:
+    def subarraysDivByK(self, nums: List[int], k: int) -> int:
+        remain,ans,cur = defaultdict(int),0,0
+        remain[0]+=1
+        for num in nums:
+            cur+=num
+            ans+=remain[cur%k]
+            remain[cur%k]+=1
+        return ans   
