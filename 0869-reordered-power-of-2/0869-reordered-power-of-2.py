@@ -13,7 +13,6 @@ class Solution:
             return True
         while start<=maxx:
             digit = list(str(start))
-            print(orig,digit)
             digit.sort()
             if digit == orig:
                 return True
