@@ -1,0 +1,17 @@
+class Solution:
+    def numSquarefulPerms(self, nums: List[int]) -> int:
+        
+        @cache
+        def solve(v, bit): 
+            if not bit:
+                return 1 
+            ans = 0 
+            visited = set()
+            for i, val in enumerate(nums): 
+                if val not in visited:
+                    if (bit == (1 << len(nums)) - 1 or bit & (1 << i) and int(sqrt(val+v))**2 == val+v): 
+                        visited.add(val)
+                        ans += solve(val, bit ^ (1 << i))
+            return ans 
+        
+        return solve(-1, (1 << len(nums)) - 1)
