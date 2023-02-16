@@ -1,0 +1,16 @@
+class Solution:
+    def findOriginalArray(self, A: List[int]) -> List[int]:
+        A.sort() 
+        hashmap = defaultdict(int)  
+        ans = []
+        for num in A:
+            hashmap[num] += 1
+        for num in A:
+            if hashmap[num]>0: 
+                hashmap[num] -= 1 
+                if hashmap[2*num]>0:
+                    ans.append(num)
+                    hashmap[2*num] -= 1 
+                else:
+                    return []
+        return ans
