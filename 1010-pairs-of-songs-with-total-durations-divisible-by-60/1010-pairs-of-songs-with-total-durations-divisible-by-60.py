@@ -1,0 +1,17 @@
+class Solution:
+    def numPairsDivisibleBy60(self, time: List[int]) -> int:
+        timeCount = defaultdict(int)
+        for t in time:
+            timeCount[t]+=1
+        ans = 0
+        for t in time:
+            timeCount[t]-=1
+            if timeCount[t] == 0:
+                del timeCount[t]
+            cur = t//60+1
+            while cur*60<1000:
+                diff = cur*60-t
+                if diff in timeCount:
+                    ans+=timeCount[diff]
+                cur+=1
+        return ans
