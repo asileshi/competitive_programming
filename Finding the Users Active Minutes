@@ -1,0 +1,15 @@
+class Solution:
+    def findingUsersActiveMinutes(self, logs: List[List[int]], k: int) -> List[int]:
+        hashmap = defaultdict(set)
+        for log in logs:
+            hashmap[log[0]].add(log[1])
+        uma = defaultdict(int)
+        for h in hashmap:
+            uma[len(hashmap[h])]+=1
+        ans = []
+        for i in range(k+1):
+            if i in uma:
+                ans.append(uma[i])
+            else:
+                ans.append(0)
+        return ans[1:]
