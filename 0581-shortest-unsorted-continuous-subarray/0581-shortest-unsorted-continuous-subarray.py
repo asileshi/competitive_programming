@@ -11,5 +11,4 @@ class Solution:
                 r = max(r,stack.pop())
             stack.append(i)
             i-=1
-        print(l,r)
         return r-l+1 if r-l>0 else 0
