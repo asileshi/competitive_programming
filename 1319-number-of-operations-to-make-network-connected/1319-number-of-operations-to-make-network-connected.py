@@ -3,7 +3,7 @@ class Solution:
         conn = [i for i in range(n)]
         rank = [0 for i in range(n)]
         def find(x):
-            if x == conn[x]:
+            if conn[x] == x:
                 return x
             conn[x] = find(conn[x])
             return conn[x]
@@ -22,12 +22,11 @@ class Solution:
                 reden[0]+=1
         for x,y in connections:
             union(x,y)
-        groups = 0
-        for i,com in enumerate(conn):
-            if com==i:
-                groups+=1
-        if groups-1<=reden[0]:
-            return groups-1
-        
+        group = 0
+        for i,j in enumerate(conn):
+            if i==j:
+                group+=1
+        if reden[0]>=group-1:
+            return group-1
         return -1
                 
