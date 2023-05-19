@@ -18,7 +18,7 @@ class Solution:
                         return 
                     elif color[newi][newj] == 0:
                         dfs(child,(newi,newj))
-        
+            color[ci][cj] = 2
         for i in range(len(grid)):
             for j in range(len(grid[i])):
                 if color[i][j] == 0:
